@@ -42,7 +42,7 @@ app.bu.com
 > _⚠️ caso queira cadastrar uma bateria entre em contato com um dos colaboradores_ 
 
 
-# 📚 Tecnologias utilizadas
+# 📚 Tecnologias
 
 <div style="display: flex">
   
@@ -74,6 +74,19 @@ $ yarn install
 $ yarn dev
 ```
 > _Obs: é necessário criar um projeto no Firebase e copiar suas chaves de ambiente_
+
+# 📫 Contribuições
+
+Para contribuir com a plataforma BU, siga estas etapas abaixo:
+
+- [ ] Crie uma `Issue` descrevendo seu ponto de contribuição
+- [ ] Bifurque este repositório.
+- [ ] Crie um branch: `git checkout -b contribute:<nome_branch>`.
+- [ ] Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`
+- [ ] Envie para o branch original: `git push origin <nome_do_projeto> / <local>`
+- [ ] Crie a solicitação de pull.
+
+_Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)._ 🚀
 
 # 🍻 Contatos
 
