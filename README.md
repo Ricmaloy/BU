@@ -88,6 +88,15 @@ Para contribuir com a plataforma BU, siga estas etapas abaixo:
 
 _Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request)._ 🚀
 
+# 💕 Apoiar
+
+Todo o código usado na plataforma você encontra aqui, da mesma forma como eu fico a disposição para toda e qualquer dúvida relacionada a plataforma e obviamente
+de maneira totalmente gratuita, a ideia é proporcionar uma experiência sensacional para pessoas desse círculo social e sendo assim, toda crítica ou elogio é super bem vindo!
+
+Não se esqueça de dar uma estrela (⭐) a esse repositório.
+
+_Caso tenha gostado do projeto e queira me apoiar basta seguir o passo a passo nesse [link](https://github.com/sponsors/ricmaloy)._
+
 # 🍻 Contatos
 
  você vai me encontrar em qualquer uma das redes sociais abaixo 🍻
