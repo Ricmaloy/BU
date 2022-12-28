@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align=center>
+  <img src="https://i.imgur.com/85KTD0G.png" alt="Logo plataforma BU" width="400px">
+</div>
 
-## Getting Started
+#
 
-First, run the development server:
+<p align="center" margin-top="25px" >
+  <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Ricmaloy/bu?color=202024">
+
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Ricmaloy/bu?color=282828">
+  
+  <a href="https://github.com/Ricmaloy/bu/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/Ricmaloy/bu?color=C6C6C6">
+  </a>
+
+  <img alt="GitHub" src="https://img.shields.io/github/license/Ricmaloy/bu?color=FF5100">
+</p>
+
+
+
+<img src="https://i.imgur.com/b0e8qMz.png">
+
+# 🧠 Sobre
+
+Ignite Lab é a 2º edição desse evento oferecido pela [Rocketseat](https://rocketseat.com.br) para a comunidade exclusiva de alunos programa de especialização Ignite.
+Nessa edição foi desenvolvida uma aplicação de plataforma de evento digital completo e acessível semelhante a utilizada durante a semana, todo o frontend feito em Vite, ReactJS, TailwindCSS e GraphQL, sob mentoria do [Diego Fernandes](https://github.com/diego3g). 🚀
+
+
+# 📚 Tecnologias utilizadas
+
+<div style="display: flex">
+  
+  <a href="https://reactjs.org/"><img align="center" alt="Hideki-React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"> - React</a><br/>
+  
+  <a href="https://www.typescriptlang.org/"><img align="center" alt="Hideki-Ts" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg"> - Typescript</a><br/>
+  
+  <a href="https://reactjs.org/"><img align="center" alt="Hideki-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"> - HTML</a><br/>
+  
+  <a href="https://sass-lang.com/"><img align="center" alt="Hideki-Tailwind" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/tailwindcss/tailwindcss-plain.svg"> - TailwindCSS</a><br/>
+  
+  <a href="https://nodejs.org/"><img align="center" alt="Hideki-Node" height="30" width="35" src="https://github.com/devicons/devicon/blob/master/icons/graphql/graphql-plain.svg"> - GraphQL</a><br/>
+</div>
+    
+# ⚙️ Instalação
 
 ```bash
-npm run dev
-# or
-yarn dev
+# Clone o repositório
+$ git clone https://github.com/Ricmaloy/event-platform.git
+
+# Entre no repositório
+$ cd event-platform
+
+# Instale as dependências
+$ yarn install
+
+# Execute a aplicação
+$ yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# 🍻 Contatos
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+ você vai me encontrar em qualquer uma das redes sociais abaixo 🍻
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+<a href = "mailto: ricardozamboni021@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23EA4335?style=for-the-badge&logo=gmail&logoColor=white" target="_blank" margin-right="10px"></a>
+<a href="https://www.linkedin.com/in/ricardo-zamboni-3906471b3/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a>
+<a href="https://github.com/Ricmaloy" target="_blank"><img src="https://github.com/Alexandrehideki13/Alexandrehideki13/blob/main/GistGithub.jpeg" height=29 target="_blank"></a>
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+<p align="center">Made with 💜 by Ricardo Zamboni Silva</p>
