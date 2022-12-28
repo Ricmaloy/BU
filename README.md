@@ -23,8 +23,23 @@
 # 🧠 Sobre
 
 _BU é a mais nova plataforma de gestão e interação de bateria universitárias, aqui tarefas do dia a dia se tornam muito mais simples e fáceis, crie eventos
-para sua bateria, organize ensaios, tenha controle total da sua bateria, interaja com outros ritmistas, monitore assosiações e muito mais, tudo isso de 
+para sua bateria, organize ensaios, tenha controle total da sua bateria, interaja com outros ritmistas, monitore associações e muito mais, tudo isso de 
 forma rápida e divertida._
+
+# ☕ Como começar
+
+Para começar a utilizar a plataforma BU acesse a plataforma pelo link abaixo e siga as instruções:
+
+```
+app.bu.com
+```
+
+- [ ] Cadastre utilizando sua conta _Google_
+- [ ] Complete seu cadastro com informações adicionais e vínculo com bateria
+- [ ] Aguarde pela confirmação do vínculo com a instituição pelo gestor
+- [ ] Tudo pronto! ✨ 
+
+> _⚠️ caso queira cadastrar uma bateria entre em contato com um dos colaboradores_ 
 
 
 # 📚 Tecnologias utilizadas
