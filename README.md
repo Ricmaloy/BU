@@ -4,7 +4,7 @@
 
 #
 
-<p align="center" margin-top="25px" >
+<p align="center">
   <img alt="GitHub top language" src="https://img.shields.io/github/languages/top/Ricmaloy/bu?color=202024">
 
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/Ricmaloy/bu?color=282828">
@@ -22,8 +22,9 @@
 
 # 🧠 Sobre
 
-Ignite Lab é a 2º edição desse evento oferecido pela [Rocketseat](https://rocketseat.com.br) para a comunidade exclusiva de alunos programa de especialização Ignite.
-Nessa edição foi desenvolvida uma aplicação de plataforma de evento digital completo e acessível semelhante a utilizada durante a semana, todo o frontend feito em Vite, ReactJS, TailwindCSS e GraphQL, sob mentoria do [Diego Fernandes](https://github.com/diego3g). 🚀
+_BU é a mais nova plataforma de gestão e interação de bateria universitárias, aqui tarefas do dia a dia se tornam muito mais simples e fáceis, crie eventos
+para sua bateria, organize ensaios, tenha controle total da sua bateria, interaja com outros ritmistas, monitore assosiações e muito mais, tudo isso de 
+forma rápida e divertida._
 
 
 # 📚 Tecnologias utilizadas
