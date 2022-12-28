@@ -31,25 +31,26 @@ forma rápida e divertida._
 
 <div style="display: flex">
   
-  <a href="https://reactjs.org/"><img align="center" alt="Hideki-React" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"> - React</a><br/>
+  <a href="https://nextjs.org/"><img align="center" alt="Hideki-NextJS" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/nextjs/nextjs-original.svg"> - NextJS</a><br/>
   
-  <a href="https://www.typescriptlang.org/"><img align="center" alt="Hideki-Ts" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/typescript/typescript-plain.svg"> - Typescript</a><br/>
+  <a href="https://firebase.google.com/"><img align="center" alt="Hideki-Firebase" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/firebase/firebase-plain.svg"> - Firebase</a><br/>
   
-  <a href="https://reactjs.org/"><img align="center" alt="Hideki-HTML" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg"> - HTML</a><br/>
+  <a href="https://www.typescriptlang.org/"><img align="center" alt="Hideki-Typescript" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/typescript/typescript-plain.svg"> - Typescript</a><br/>
   
-  <a href="https://sass-lang.com/"><img align="center" alt="Hideki-Tailwind" height="30" width="40" src="https://raw.githubusercontent.com/devicons/devicon/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/tailwindcss/tailwindcss-plain.svg"> - TailwindCSS</a><br/>
+  <a href="https://jestjs.io/pt-BR/"><img align="center" alt="Hideki-Jest" height="30" width="40" src="https://github.com/devicons/devicon/blob/master/icons/jest/jest-plain.svg"> - Jest</a><br/>
   
-  <a href="https://nodejs.org/"><img align="center" alt="Hideki-Node" height="30" width="35" src="https://github.com/devicons/devicon/blob/master/icons/graphql/graphql-plain.svg"> - GraphQL</a><br/>
+  <a href="https://github.com/"><img align="center" alt="Hideki-Node" height="30" width="35" src="https://github.com/devicons/devicon/blob/master/icons/github/github-original.svg"> - Github</a><br/>
+  
 </div>
     
 # ⚙️ Instalação
 
 ```bash
 # Clone o repositório
-$ git clone https://github.com/Ricmaloy/event-platform.git
+$ git clone https://github.com/Ricmaloy/bu.git
 
 # Entre no repositório
-$ cd event-platform
+$ cd bu
 
 # Instale as dependências
 $ yarn install
@@ -57,7 +58,7 @@ $ yarn install
 # Execute a aplicação
 $ yarn dev
 ```
-
+> _Obs: é necessário criar um projeto no Firebase e copiar suas chaves de ambiente_
 
 # 🍻 Contatos
 
