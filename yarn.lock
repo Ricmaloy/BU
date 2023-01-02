@@ -790,12 +790,38 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha512-Vvn3zZrhQZkkBE8LSuW3em98c0FwgO4nxzv6OdSxPKJIEKY2bGbHn+mhGIPerzI4twdxaP8/0+06HBpwf345Lw==
 
+"@radix-ui/react-avatar@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-avatar/-/react-avatar-1.0.1.tgz#d25ef10b56210039c152e45209dd41a1afdc192e"
+  integrity sha512-GfUgw4i/OWmb76bmM9qLnedYOsXhPvRXL6xaxyZzhiIVEwo2KbmxTaSQv5r1Oh8nNqBs1vfYPGuVmhEfpxpnvw==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/react-context" "1.0.0"
+    "@radix-ui/react-primitive" "1.0.1"
+    "@radix-ui/react-use-callback-ref" "1.0.0"
+    "@radix-ui/react-use-layout-effect" "1.0.0"
+
 "@radix-ui/react-compose-refs@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@radix-ui/react-compose-refs/-/react-compose-refs-1.0.0.tgz#37595b1f16ec7f228d698590e78eeed18ff218ae"
   integrity sha512-0KaSv6sx787/hK3eF53iOkiSLwAGlFMx5lotrqD2pTjB18KbybKoEIgkNZTKC60YECDQTKGTRcDBILwZVqVKvA==
   dependencies:
     "@babel/runtime" "^7.13.10"
+
+"@radix-ui/react-context@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-context/-/react-context-1.0.0.tgz#f38e30c5859a9fb5e9aa9a9da452ee3ed9e0aee0"
+  integrity sha512-1pVM9RfOQ+n/N5PJK33kRSKsr1glNxomxONs5c49MliinBY6Yw2Q995qfBUUo0/Mbg05B/sGA0gkgPI7kmSHBg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+
+"@radix-ui/react-label@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-label/-/react-label-2.0.0.tgz#f94c60459cc91a69fe0ae5bb326bc3f3c091d7e1"
+  integrity sha512-7qCcZ3j2VQspWjy+gKR4W+V/z0XueQjeiZnlPOtsyiP9HaS8bfSU7ECoI3bvvdYntQj7NElW7OAYsYRW4MQvCg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+    "@radix-ui/react-primitive" "1.0.1"
 
 "@radix-ui/react-primitive@1.0.1":
   version "1.0.1"
@@ -820,6 +846,20 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
     "@radix-ui/react-compose-refs" "1.0.0"
+
+"@radix-ui/react-use-callback-ref@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-callback-ref/-/react-use-callback-ref-1.0.0.tgz#9e7b8b6b4946fe3cbe8f748c82a2cce54e7b6a90"
+  integrity sha512-GZtyzoHz95Rhs6S63D2t/eqvdFCm7I+yHMLVQheKM7nBD8mbZIt+ct1jz4536MDnaOGKIxynJ8eHTkVGVVkoTg==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
+
+"@radix-ui/react-use-layout-effect@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@radix-ui/react-use-layout-effect/-/react-use-layout-effect-1.0.0.tgz#2fc19e97223a81de64cd3ba1dc42ceffd82374dc"
+  integrity sha512-6Tpkq+R6LOlmQb1R5NNETLG0B4YP0wc+klfXafpUCj6JGyaUc8il7/kUZ7m59rGbXGczE9Bs+iz2qloqsZBduQ==
+  dependencies:
+    "@babel/runtime" "^7.13.10"
 
 "@rushstack/eslint-patch@^1.1.3":
   version "1.2.0"
@@ -910,6 +950,11 @@
     "@types/hoist-non-react-statics" "*"
     "@types/react" "*"
     csstype "^3.0.2"
+
+"@types/uuid@^9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@types/uuid/-/uuid-9.0.0.tgz#53ef263e5239728b56096b0a869595135b7952d2"
+  integrity sha512-kr90f+ERiQtKWMz5rP32ltJ/BtULDI5RVO0uavn1HQUOwjx0R1h0rnDYNL0CepF1zL5bSY6FISAfd9tOdDhU5Q==
 
 "@typescript-eslint/eslint-plugin@^5.47.0":
   version "5.47.0"
@@ -1226,6 +1271,11 @@ concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==
+
+cookie@^0.4.1:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/cookie/-/cookie-0.4.2.tgz#0e41f24de5ecf317947c82fc789e06a884824432"
+  integrity sha512-aSWTXFzaKWkvHO1Ny/s+ePFpvKsPnjc551iI41v3ny/ow6tBG5Vd+FuqGNhh1LxOmVzOlGUriIlOaokOvhaStA==
 
 core-js-pure@^3.25.1:
   version "3.27.0"
@@ -2328,6 +2378,14 @@ node-fetch@2.6.7:
   dependencies:
     whatwg-url "^5.0.0"
 
+nookies@^2.5.2:
+  version "2.5.2"
+  resolved "https://registry.yarnpkg.com/nookies/-/nookies-2.5.2.tgz#cc55547efa982d013a21475bd0db0c02c1b35b27"
+  integrity sha512-x0TRSaosAEonNKyCrShoUaJ5rrT5KHRNZ5DwPCuizjgrnkpE5DRf3VL7AyyQin4htict92X1EQ7ejDbaHDVdYA==
+  dependencies:
+    cookie "^0.4.1"
+    set-cookie-parser "^2.4.6"
+
 object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
@@ -2683,6 +2741,11 @@ semver@^7.3.7:
   dependencies:
     lru-cache "^6.0.0"
 
+set-cookie-parser@^2.4.6:
+  version "2.5.1"
+  resolved "https://registry.yarnpkg.com/set-cookie-parser/-/set-cookie-parser-2.5.1.tgz#ddd3e9a566b0e8e0862aca974a6ac0e01349430b"
+  integrity sha512-1jeBGaKNGdEq4FgIrORu/N570dwoPYio8lSoYLWmX7sQ//0JY08Xh9o5pBcgmHQ/MbsYp/aZnOe1s1lIsbLprQ==
+
 shallowequal@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/shallowequal/-/shallowequal-1.1.0.tgz#188d521de95b9087404fd4dcb68b13df0ae4e7f8"
@@ -2927,6 +2990,11 @@ uri-js@^4.2.2:
   integrity sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==
   dependencies:
     punycode "^2.1.0"
+
+uuid@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/uuid/-/uuid-9.0.0.tgz#592f550650024a38ceb0c562f2f6aa435761efb5"
+  integrity sha512-MXcSTerfPa4uqyzStbRoTgt5XIe3x5+42+q1sDuy3R5MDk66URdLMOZe5aPX/SQd+kuYAh0FdP/pO28IkQyTeg==
 
 webidl-conversions@^3.0.0:
   version "3.0.1"
