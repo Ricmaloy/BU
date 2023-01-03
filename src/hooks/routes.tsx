@@ -24,3 +24,28 @@ export function withAuth(Component: React.ComponentType<any>) {
 
   return Wrapper;
 }
+
+export function withPublic(Component: React.ComponentType<any>) {
+  const Wrapper = (props: any) => {
+    const { user, loading, isNewUser } = useAuth();
+    const router = useRouter();
+
+    useEffect(() => {
+      if (!loading && isNewUser) {
+        router.push('/register');
+      }
+
+      if (!loading && user) {
+        router.push('/feed');
+      }
+    }, [router, loading, user, isNewUser]);
+
+    if (loading) {
+      return <Loader />;
+    }
+
+    return <Component {...props} />;
+  };
+
+  return Wrapper;
+}
