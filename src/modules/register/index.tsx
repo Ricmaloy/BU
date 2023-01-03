@@ -1,12 +1,12 @@
-import { GetServerSideProps, GetServerSidePropsContext } from 'next';
+import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import nookies from 'nookies';
+import { useState } from 'react';
 import { InstagramLogo, TwitterLogo } from 'phosphor-react';
 
 import { useAuth } from '~/hooks/useAuth';
+import { withAuth } from '~/hooks/routes';
 import { DefaultLayout } from '~/layouts/Default';
-import { auth, db, firebase } from '~/services/firebase';
+import { db } from '~/services/firebase';
 
 import { Divider } from '~/components/Divider';
 import { Avatar } from '~/components/Avatar';
@@ -26,8 +26,7 @@ import {
 } from './styles';
 
 const RegisterPage = () => {
-  const router = useRouter();
-  const { signOut, loading, user } = useAuth();
+  const { user } = useAuth();
 
   const [bannerUrl, setBannerUrl] = useState('/assets/backgrounds/banner.png');
   const [institution, setInstitution] = useState('');
@@ -38,14 +37,6 @@ const RegisterPage = () => {
   const [birthday, setBirthday] = useState('');
   const [twitter, setTwitter] = useState('');
   const [instagram, setInstagram] = useState('');
-
-  // useEffect(() => {
-  //   if (user) {
-  //     console.log('user logged in');
-  //   } else {
-  //     router.push('/login');
-  //   }
-  // }, [router, user]);
 
   async function handleCompleteRegistration() {
     try {
@@ -62,7 +53,7 @@ const RegisterPage = () => {
         instagram
       });
 
-      const docRef = await db
+      await db
         .collection('users')
         .add({
           name: user?.name,
@@ -79,15 +70,9 @@ const RegisterPage = () => {
           onboarded: true
         })
         .then((res) => console.log({ res }));
-
-      // console.log(docRef.id);
     } catch (err) {
       console.log(err);
     }
-  }
-
-  if (loading || !user) {
-    return <>loading</>;
   }
 
   return (
@@ -196,18 +181,10 @@ const RegisterPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (
-  ctx: GetServerSidePropsContext
-) => {
-  try {
-    const cookies = nookies.get(ctx);
-    const token = await auth.currentUser?.getIdToken();
-  } catch (error) {
-    console.log(error);
-  }
+export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {}
   };
 };
 
-export const Register = RegisterPage;
+export const Register = withAuth(RegisterPage);
