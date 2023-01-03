@@ -67,14 +67,13 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
         throw new Error('Missing information from Google Account!');
       }
 
+      setIsNewUser(isNewUser);
       setUser({
         id: uid,
         name: displayName,
         avatar: photoURL,
         email: email
       });
-
-      setIsNewUser(isNewUser);
     }
   }
 
