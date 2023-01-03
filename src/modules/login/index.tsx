@@ -1,4 +1,5 @@
 import { GetServerSideProps } from 'next';
+import { withPublic } from '~/hooks/routes';
 import { useAuth } from '~/hooks/useAuth';
 import { Unauthorized } from '~/layouts/Unauthorized';
 import { Button } from './components/Button';
@@ -36,4 +37,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 };
 
-export const Login = LoginPage;
+export const Login = withPublic(LoginPage);
