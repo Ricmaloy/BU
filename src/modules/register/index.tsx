@@ -27,6 +27,7 @@ import {
 
 const RegisterPage = () => {
   const { user } = useAuth();
+  const router = useRouter();
 
   const [bannerUrl, setBannerUrl] = useState('/assets/backgrounds/banner.png');
   const [institution, setInstitution] = useState('');
@@ -40,36 +41,35 @@ const RegisterPage = () => {
 
   async function handleCompleteRegistration() {
     try {
-      console.log({
+      //   console.log({
+      //     name: user?.name,
+      //     avatar: user?.avatar,
+      //     bannerUrl,
+      //     institution,
+      //     nickname,
+      //     bio,
+      //     course,
+      //     city,
+      //     twitter,
+      //     instagram
+      //   });
+
+      await db.collection('users').add({
         name: user?.name,
         avatar: user?.avatar,
-        bannerUrl,
-        institution,
-        nickname,
-        bio,
-        course,
-        city,
-        twitter,
-        instagram
+        email: user?.email,
+        bannerUrl: bannerUrl,
+        institution: institution,
+        nickname: nickname,
+        bio: bio,
+        course: course,
+        city: city,
+        twitter: twitter,
+        instagram: instagram,
+        onboarded: true
       });
 
-      await db
-        .collection('users')
-        .add({
-          name: user?.name,
-          avatar: user?.avatar,
-          email: user?.email,
-          bannerUrl: bannerUrl,
-          institution: institution,
-          nickname: nickname,
-          bio: bio,
-          course: course,
-          city: city,
-          twitter: twitter,
-          instagram: instagram,
-          onboarded: true
-        })
-        .then((res) => console.log({ res }));
+      router.push('/feed');
     } catch (err) {
       console.log(err);
     }
