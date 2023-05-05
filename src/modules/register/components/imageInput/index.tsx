@@ -12,7 +12,7 @@ import { Container, LabelStyled, FileInput, BannerContainer } from './styled';
 
 type ImageInputProps = {
   label?: string;
-  handleSetBanner: (value: string) => void;
+  handleSetBanner?: (value: string) => void;
 };
 
 export const ImageInput = ({ label, handleSetBanner }: ImageInputProps) => {
@@ -46,7 +46,7 @@ export const ImageInput = ({ label, handleSetBanner }: ImageInputProps) => {
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           setImageUrl(url);
-          handleSetBanner(url);
+          // handleSetBanner(url);
         });
       }
     );

@@ -42,7 +42,7 @@ export const Description = styled('p', {
   marginBottom: '$12'
 });
 
-export const Form = styled('div', {
+export const Form = styled('form', {
   display: 'flex',
   flexDirection: 'column',
   gap: '$7'

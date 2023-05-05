@@ -1,5 +1,6 @@
 import { useState, createContext, useEffect, ReactNode } from 'react';
 import { auth, firebase } from '../services/firebase';
+import nookies from 'nookies';
 
 type User = {
   id: string;
@@ -38,6 +39,9 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
           throw new Error('Missing information from Google Account!');
         }
 
+        const token = email;
+        nookies.set(undefined, '@bu:token', token, { path: '/' });
+
         setUser({
           id: uid,
           name: displayName,
@@ -66,6 +70,9 @@ export function AuthContextProvider(props: AuthContextProviderProps) {
       if (!displayName || !photoURL || !email) {
         throw new Error('Missing information from Google Account!');
       }
+
+      const token = email;
+      nookies.set(undefined, '@bu:token', token, { path: '/' });
 
       setIsNewUser(isNewUser);
       setUser({

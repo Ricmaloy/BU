@@ -2,6 +2,10 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { InstagramLogo, TwitterLogo } from 'phosphor-react';
+import { z } from 'zod';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import nookies from 'nookies';
 
 import { useAuth } from '~/hooks/useAuth';
 import { withAuth } from '~/hooks/routes';
@@ -10,7 +14,7 @@ import { db } from '~/services/firebase';
 
 import { Divider } from '~/components/Divider';
 import { Avatar } from '~/components/Avatar';
-import { Banner } from './components/banner';
+import { Banner } from '~/components/Banner';
 import { ImageInput } from './components/imageInput';
 import { TextInput } from './components/textInput';
 import { TextareaInput } from './components/textareaInput';
@@ -25,60 +29,81 @@ import {
   Button
 } from './styles';
 
+const ACCEPTED_IMAGE_TYPES = [
+  'image/jpeg',
+  'image/jpg',
+  'image/png',
+  'image/webp'
+];
+
+const defaultBanner = '/assets/backgrounds/banner.png';
+
+const registerFormSchema = z.object({
+  bannerUrl: z
+    .any()
+    .refine(
+      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
+      'Only .jpg, .jpeg, .png and .webp formats are supported.'
+    )
+    .optional(),
+  institution: z
+    .string()
+    .min(3, { message: 'O nome da bateria precisa ter pelo menos 3 letras.' }),
+  nickname: z
+    .string()
+    .min(3, { message: 'O apelido precisa ter pelo menos 3 letras.' })
+    .optional(),
+  bio: z
+    .string()
+    .min(3, { message: 'A biografia precisa ter pelo menos 3 letras.' }),
+  course: z
+    .string()
+    .min(3, { message: 'O nome do curso precisa ter pelo menos 3 letras.' }),
+  birth: z.string().datetime()
+});
+
+type RegisterFormsData = z.infer<typeof registerFormSchema>;
+
 const RegisterPage = () => {
   const { user } = useAuth();
   const router = useRouter();
 
-  const [bannerUrl, setBannerUrl] = useState('/assets/backgrounds/banner.png');
-  const [institution, setInstitution] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [bio, setBio] = useState('');
-  const [course, setCourse] = useState('');
-  const [city, setCity] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [twitter, setTwitter] = useState('');
-  const [instagram, setInstagram] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<RegisterFormsData>({
+    resolver: zodResolver(registerFormSchema)
+  });
 
-  async function handleCompleteRegistration() {
+  async function handleCompleteRegistration(data: RegisterFormsData) {
     try {
-      //   console.log({
-      //     name: user?.name,
-      //     avatar: user?.avatar,
-      //     bannerUrl,
-      //     institution,
-      //     nickname,
-      //     bio,
-      //     course,
-      //     city,
-      //     twitter,
-      //     instagram
-      //   });
+      // await db.collection('users').add({
+      //   name: user?.name,
+      //   avatar: user?.avatar,
+      //   email: user?.email,
+      //   bannerUrl: bannerUrl,
+      //   institution: institution,
+      //   nickname: nickname,
+      //   bio: bio,
+      //   course: course,
+      //   city: city,
+      //   twitter: twitter,
+      //   instagram: instagram,
+      //   onboarded: true
+      // });
 
-      await db.collection('users').add({
-        name: user?.name,
-        avatar: user?.avatar,
-        email: user?.email,
-        bannerUrl: bannerUrl,
-        institution: institution,
-        nickname: nickname,
-        bio: bio,
-        course: course,
-        city: city,
-        twitter: twitter,
-        instagram: instagram,
-        onboarded: true
-      });
+      console.log(data);
 
-      router.push('/feed');
+      // router.push('/feed');
     } catch (err) {
       console.log(err);
     }
   }
-
   return (
     <DefaultLayout title="Register">
       <Container>
-        <Banner url={bannerUrl} />
+        <Banner url={defaultBanner} />
 
         <Divider />
 
@@ -100,80 +125,64 @@ const RegisterPage = () => {
             }
           </Description>
 
-          <Form>
+          <Form onSubmit={handleSubmit(handleCompleteRegistration)}>
             <ImageInput
-              handleSetBanner={setBannerUrl}
+              // handleSetBanner={setBannerUrl}
+              // handleSetBanner={...register('bannerUrl').onChange()}
               label={'Uma imagem de capa para seu perfil'}
+              {...register('bannerUrl')}
             />
-
             <TextInput
               label={'Sua bateria'}
-              name={'institution'}
-              onChange={(ev) => setInstitution(ev.target.value)}
               placeholder={'ex: Bateria UFUteria'}
-              value={institution}
+              {...register('institution')}
             />
+
+            {/* <input type="text" {...register('institution')} /> */}
+
+            <p>{errors.institution?.message}</p>
 
             <TextInput
               label={'Seu apelido na bateria'}
-              name={'nickname'}
-              onChange={(ev) => setNickname(ev.target.value)}
               placeholder={'ex: McLovin'}
-              value={nickname}
+              {...register('nickname')}
             />
+            <p>{errors.nickname?.message}</p>
 
             <TextareaInput
               label={'Uma descrição sobre você'}
               placeholder={
                 'ex: Mineiro, dono do carreteiro mais manco e da gargalhada mais errada da minha rua'
               }
-              onChange={(ev) => setBio(ev.target.value)}
-              value={bio}
+              {...register('bio')}
             />
 
             <TextInput
               label={'Seu curso de graduação'}
-              name={'graduation'}
-              onChange={(ev) => setCourse(ev.target.value)}
               placeholder={'ex: Ciência da Computação'}
-              value={course}
             />
 
-            <TextInput
-              label={'Sua cidade'}
-              name={'city'}
-              onChange={(ev) => setCity(ev.target.value)}
-              placeholder={'ex: Uberlândia'}
-              value={city}
-            />
+            <TextInput label={'Sua cidade'} placeholder={'ex: Uberlândia'} />
 
             <TextInput
               label={'Sua data de nascimento'}
-              name={'birthday'}
-              onChange={(ev) => setBirthday(ev.target.value)}
               placeholder={'ex: 25/08/2000'}
-              value={birthday}
+              {...register('birth')}
             />
 
             <Socials>
               <TextInput
                 icon={<TwitterLogo size={24} weight="fill" />}
                 label={'Suas redes sociais'}
-                name={'twitter'}
-                onChange={(ev) => setTwitter(ev.target.value)}
                 placeholder={'seu @ do Twitter'}
-                value={twitter}
               />
               <TextInput
                 icon={<InstagramLogo size={24} weight="fill" />}
-                name={'instagram'}
-                onChange={(ev) => setInstagram(ev.target.value)}
                 placeholder={'seu @ do Instagram'}
-                value={instagram}
               />
             </Socials>
 
-            <Button onClick={handleCompleteRegistration}>Finalizar</Button>
+            <Button type="submit">Finalizar</Button>
           </Form>
         </Content>
       </Container>
@@ -181,7 +190,29 @@ const RegisterPage = () => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  // const cookies = nookies.get(ctx);
+  // const token = cookies['@bu:token'];
+
+  // const user = await db
+  //   .collection('users')
+  //   .where('email', '==', token)
+  //   .get()
+  //   .then((users) => {
+  //     const user = users.docs[0].data();
+  //     return user;
+  //   });
+
+  // const hasAlreadyRegistered = user.onboarded;
+
+  // if (hasAlreadyRegistered) {
+  //   return {
+  //     redirect: {
+  //       destination: '/feed',
+  //       permanent: false
+  //     }
+  //   };
+  // }
   return {
     props: {}
   };
