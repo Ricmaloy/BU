@@ -60,3 +60,8 @@ export const Input = styled('input', {
   fontSize: '$sm',
   outline: 'none'
 });
+
+export const ErrorMessage = styled('p', {
+  color: '$danger-light',
+  fontSize: '$sm'
+});

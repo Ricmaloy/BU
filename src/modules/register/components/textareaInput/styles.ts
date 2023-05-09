@@ -37,3 +37,8 @@ export const TextArea = styled('textarea', {
     }
   }
 });
+
+export const ErrorMessage = styled('p', {
+  color: '$danger-light',
+  fontSize: '$sm'
+});

@@ -59,7 +59,12 @@ const registerFormSchema = z.object({
   course: z
     .string()
     .min(3, { message: 'O nome do curso precisa ter pelo menos 3 letras.' }),
-  birth: z.string().datetime()
+  city: z
+    .string()
+    .min(3, { message: 'O nome do curso precisa ter pelo menos 3 letras.' }),
+  birth: z.string().min(8, { message: 'A data deve ser um válido' }),
+  twitter: z.string().optional(),
+  instagram: z.string().optional()
 });
 
 type RegisterFormsData = z.infer<typeof registerFormSchema>;
@@ -135,38 +140,44 @@ const RegisterPage = () => {
             <TextInput
               label={'Sua bateria'}
               placeholder={'ex: Bateria UFUteria'}
+              error={errors.institution?.message}
               {...register('institution')}
             />
-
-            {/* <input type="text" {...register('institution')} /> */}
-
-            <p>{errors.institution?.message}</p>
 
             <TextInput
               label={'Seu apelido na bateria'}
               placeholder={'ex: McLovin'}
+              error={errors.nickname?.message}
               {...register('nickname')}
             />
-            <p>{errors.nickname?.message}</p>
 
             <TextareaInput
               label={'Uma descrição sobre você'}
               placeholder={
                 'ex: Mineiro, dono do carreteiro mais manco e da gargalhada mais errada da minha rua'
               }
+              errorMessage={errors.bio?.message}
               {...register('bio')}
             />
 
             <TextInput
               label={'Seu curso de graduação'}
               placeholder={'ex: Ciência da Computação'}
+              error={errors.course?.message}
+              {...register('course')}
             />
 
-            <TextInput label={'Sua cidade'} placeholder={'ex: Uberlândia'} />
+            <TextInput
+              label={'Sua cidade'}
+              placeholder={'ex: Uberlândia'}
+              error={errors.city?.message}
+              {...register('city')}
+            />
 
             <TextInput
               label={'Sua data de nascimento'}
               placeholder={'ex: 25/08/2000'}
+              error={errors.birth?.message}
               {...register('birth')}
             />
 
@@ -175,10 +186,12 @@ const RegisterPage = () => {
                 icon={<TwitterLogo size={24} weight="fill" />}
                 label={'Suas redes sociais'}
                 placeholder={'seu @ do Twitter'}
+                {...register('twitter')}
               />
               <TextInput
                 icon={<InstagramLogo size={24} weight="fill" />}
                 placeholder={'seu @ do Instagram'}
+                {...register('instagram')}
               />
             </Socials>
 

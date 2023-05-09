@@ -1,9 +1,16 @@
 import { ComponentProps, ElementRef, forwardRef, ReactElement } from 'react';
-import { Container, LabelStyled, InputContainer, Icon, Input } from './styles';
+import {
+  Container,
+  LabelStyled,
+  InputContainer,
+  Icon,
+  Input,
+  ErrorMessage
+} from './styles';
 
 type TextInputProps = ComponentProps<typeof Input> & {
   label?: string;
-  error?: boolean;
+  error?: string;
   icon?: ReactElement;
   name?: string;
 };
@@ -14,11 +21,12 @@ export const TextInput = forwardRef<ElementRef<typeof Input>, TextInputProps>(
       <Container>
         {label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
 
-        <InputContainer error={error}>
+        <InputContainer error={!!error}>
           {icon && <Icon htmlFor={name}>{icon}</Icon>}
 
           <Input id={name} name={name} type="text" ref={ref} {...props} />
         </InputContainer>
+        <ErrorMessage>{error}</ErrorMessage>
       </Container>
     );
   }

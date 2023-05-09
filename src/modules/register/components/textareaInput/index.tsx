@@ -1,17 +1,17 @@
 import { ComponentProps, ElementRef, forwardRef } from 'react';
-import { Container, LabelStyled, TextArea } from './styles';
+import { Container, LabelStyled, TextArea, ErrorMessage } from './styles';
 
 type TextareaProps = ComponentProps<typeof TextArea> & {
   name?: string;
   label?: string;
   placeholder?: string;
-  error?: boolean;
+  errorMessage?: string;
 };
 
 export const TextareaInput = forwardRef<
   ElementRef<typeof TextArea>,
   TextareaProps
->(({ name, label, placeholder, error, ...rest }, forwardedRef) => {
+>(({ name, label, placeholder, errorMessage, ...rest }, forwardedRef) => {
   return (
     <Container>
       {label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
@@ -20,8 +20,10 @@ export const TextareaInput = forwardRef<
         {...rest}
         placeholder={placeholder}
         ref={forwardedRef}
-        error={error}
+        name={name}
+        error={!!errorMessage}
       />
+      <ErrorMessage>{errorMessage}</ErrorMessage>
     </Container>
   );
 });
