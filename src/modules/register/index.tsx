@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { InstagramLogo, TwitterLogo } from 'phosphor-react';
 import { z } from 'zod';
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import nookies from 'nookies';
 
@@ -73,13 +73,15 @@ const RegisterPage = () => {
   const { user } = useAuth();
   const router = useRouter();
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors }
-  } = useForm<RegisterFormsData>({
+  const registerForm = useForm<RegisterFormsData>({
     resolver: zodResolver(registerFormSchema)
   });
+
+  const { handleSubmit, watch } = registerForm;
+
+  const banner = watch('bannerUrl');
+
+  const profileBanner = banner ? banner : defaultBanner;
 
   async function handleCompleteRegistration(data: RegisterFormsData) {
     try {
@@ -98,7 +100,7 @@ const RegisterPage = () => {
       //   onboarded: true
       // });
 
-      console.log(data);
+      console.log({ data });
 
       // router.push('/feed');
     } catch (err) {
@@ -108,7 +110,7 @@ const RegisterPage = () => {
   return (
     <DefaultLayout title="Register">
       <Container>
-        <Banner url={defaultBanner} />
+        <Banner url={profileBanner} />
 
         <Divider />
 
@@ -129,74 +131,68 @@ const RegisterPage = () => {
               'Nós gostaríamos de dar as boas vindas à <BU> a mais nova plataforma de gerenciamento e interação de baterias universitárias, aqui você pode realizar tarefas do dia a dia da sua bateria como criar eventos, gerir associações de ritmistas além de poder interagir com outras baterias e outros ritmistas.  É um prazer ter você por aqui, esperamos que você tenha uma experiência sensacional aqui na plataforma e para isso precisamos que você complete seu cadastro abaixo.'
             }
           </Description>
-
-          <Form onSubmit={handleSubmit(handleCompleteRegistration)}>
-            <ImageInput
-              // handleSetBanner={setBannerUrl}
-              // handleSetBanner={...register('bannerUrl').onChange()}
-              label={'Uma imagem de capa para seu perfil'}
-              {...register('bannerUrl')}
-            />
-            <TextInput
-              label={'Sua bateria'}
-              placeholder={'ex: Bateria UFUteria'}
-              error={errors.institution?.message}
-              {...register('institution')}
-            />
-
-            <TextInput
-              label={'Seu apelido na bateria'}
-              placeholder={'ex: McLovin'}
-              error={errors.nickname?.message}
-              {...register('nickname')}
-            />
-
-            <TextareaInput
-              label={'Uma descrição sobre você'}
-              placeholder={
-                'ex: Mineiro, dono do carreteiro mais manco e da gargalhada mais errada da minha rua'
-              }
-              errorMessage={errors.bio?.message}
-              {...register('bio')}
-            />
-
-            <TextInput
-              label={'Seu curso de graduação'}
-              placeholder={'ex: Ciência da Computação'}
-              error={errors.course?.message}
-              {...register('course')}
-            />
-
-            <TextInput
-              label={'Sua cidade'}
-              placeholder={'ex: Uberlândia'}
-              error={errors.city?.message}
-              {...register('city')}
-            />
-
-            <TextInput
-              label={'Sua data de nascimento'}
-              placeholder={'ex: 25/08/2000'}
-              error={errors.birth?.message}
-              {...register('birth')}
-            />
-
-            <Socials>
-              <TextInput
-                icon={<TwitterLogo size={24} weight="fill" />}
-                label={'Suas redes sociais'}
-                placeholder={'seu @ do Twitter'}
-                {...register('twitter')}
+          <FormProvider {...registerForm}>
+            <Form onSubmit={handleSubmit(handleCompleteRegistration)}>
+              <ImageInput
+                label={'Uma imagem de capa para seu perfil'}
+                name={'bannerUrl'}
               />
-              <TextInput
-                icon={<InstagramLogo size={24} weight="fill" />}
-                placeholder={'seu @ do Instagram'}
-                {...register('instagram')}
-              />
-            </Socials>
 
-            <Button type="submit">Finalizar</Button>
-          </Form>
+              <TextInput
+                name={'institution'}
+                label={'Sua bateria'}
+                placeholder={'ex: Bateria UFUteria'}
+              />
+
+              <TextInput
+                label={'Seu apelido na bateria'}
+                placeholder={'ex: McLovin'}
+                name={'nickname'}
+              />
+
+              <TextareaInput
+                name={'bio'}
+                label={'Uma descrição sobre você'}
+                placeholder={
+                  'ex: Mineiro, dono do carreteiro mais manco e da gargalhada mais errada da minha rua'
+                }
+              />
+
+              <TextInput
+                label={'Seu curso de graduação'}
+                placeholder={'ex: Ciência da Computação'}
+                name={'course'}
+              />
+
+              <TextInput
+                label={'Sua cidade'}
+                placeholder={'ex: Uberlândia'}
+                name={'city'}
+              />
+
+              <TextInput
+                label={'Sua data de nascimento'}
+                placeholder={'ex: 25/08/2000'}
+                name={'birth'}
+              />
+
+              <Socials>
+                <TextInput
+                  icon={<TwitterLogo size={24} weight="fill" />}
+                  label={'Suas redes sociais'}
+                  placeholder={'seu @ do Twitter'}
+                  name={'twitter'}
+                />
+                <TextInput
+                  icon={<InstagramLogo size={24} weight="fill" />}
+                  placeholder={'seu @ do Instagram'}
+                  name={'instagram'}
+                />
+              </Socials>
+
+              <Button type="submit">Finalizar</Button>
+            </Form>
+          </FormProvider>
         </Content>
       </Container>
     </DefaultLayout>

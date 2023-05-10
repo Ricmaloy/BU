@@ -1,31 +1,29 @@
-import { ComponentProps, ElementRef, forwardRef } from 'react';
+import { ComponentProps } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { Container, LabelStyled, TextArea, ErrorMessage } from './styles';
 
 type TextareaProps = ComponentProps<typeof TextArea> & {
-  name?: string;
+  name: string;
   label?: string;
   placeholder?: string;
-  errorMessage?: string;
 };
 
-export const TextareaInput = forwardRef<
-  ElementRef<typeof TextArea>,
-  TextareaProps
->(({ name, label, placeholder, errorMessage, ...rest }, forwardedRef) => {
+export const TextareaInput = ({ name, label, ...rest }: TextareaProps) => {
+  const {
+    register,
+    formState: { errors }
+  } = useFormContext();
+
+  const error = errors[name]?.message as string;
+
   return (
     <Container>
       {label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
 
-      <TextArea
-        {...rest}
-        placeholder={placeholder}
-        ref={forwardedRef}
-        name={name}
-        error={!!errorMessage}
-      />
-      <ErrorMessage>{errorMessage}</ErrorMessage>
+      <TextArea id={name} error={!!error} {...register(name)} {...rest} />
+      <ErrorMessage>{error}</ErrorMessage>
     </Container>
   );
-});
+};
 
 TextareaInput.displayName = 'textarea';

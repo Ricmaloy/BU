@@ -1,4 +1,5 @@
-import { ComponentProps, ElementRef, forwardRef, ReactElement } from 'react';
+import { ComponentProps, ReactElement } from 'react';
+import { useFormContext } from 'react-hook-form';
 import {
   Container,
   LabelStyled,
@@ -10,26 +11,30 @@ import {
 
 type TextInputProps = ComponentProps<typeof Input> & {
   label?: string;
-  error?: string;
   icon?: ReactElement;
-  name?: string;
+  name: string;
 };
 
-export const TextInput = forwardRef<ElementRef<typeof Input>, TextInputProps>(
-  ({ label, error, icon, name, ...props }, ref) => {
-    return (
-      <Container>
-        {label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
+export const TextInput = ({ label, icon, name, ...rest }: TextInputProps) => {
+  const {
+    register,
+    formState: { errors }
+  } = useFormContext();
 
-        <InputContainer error={!!error}>
-          {icon && <Icon htmlFor={name}>{icon}</Icon>}
+  const error = errors[name]?.message as string;
 
-          <Input id={name} name={name} type="text" ref={ref} {...props} />
-        </InputContainer>
-        <ErrorMessage>{error}</ErrorMessage>
-      </Container>
-    );
-  }
-);
+  return (
+    <Container>
+      {label && <LabelStyled htmlFor={name}>{label}</LabelStyled>}
+
+      <InputContainer error={!!error}>
+        {icon && <Icon htmlFor={name}>{icon}</Icon>}
+
+        <Input id={name} type="text" {...register(name)} {...rest} />
+      </InputContainer>
+      <ErrorMessage>{error}</ErrorMessage>
+    </Container>
+  );
+};
 
 TextInput.displayName = 'TextInput';
