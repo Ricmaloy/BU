@@ -1,11 +1,15 @@
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { InstagramLogo, TwitterLogo } from 'phosphor-react';
-import { z } from 'zod';
+import { z, ZodType } from 'zod';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import nookies from 'nookies';
+
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { v4 } from 'uuid';
+import { storage } from '~/services/firebase';
 
 import { useAuth } from '~/hooks/useAuth';
 import { withAuth } from '~/hooks/routes';
@@ -36,16 +40,26 @@ const ACCEPTED_IMAGE_TYPES = [
   'image/webp'
 ];
 
+const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+
 const defaultBanner = '/assets/backgrounds/banner.png';
 
 const registerFormSchema = z.object({
   bannerUrl: z
+    // .custom<FileList>((v) => v instanceof FileList)
     .any()
+    .refine((files) => !!files.item(0), 'A imagem de capa é obrigatória')
     .refine(
-      (file) => ACCEPTED_IMAGE_TYPES.includes(file?.type),
-      'Only .jpg, .jpeg, .png and .webp formats are supported.'
+      (files) => files.item(0).size <= MAX_FILE_SIZE,
+      `Tamanho máximo de 5MB`
     )
-    .optional(),
+    .refine(
+      (files) => ACCEPTED_IMAGE_TYPES.includes(files.item(0).type),
+      'Formato de imagem inválido'
+    )
+    .transform((files) => {
+      return files.item(0);
+    }),
   institution: z
     .string()
     .min(3, { message: 'O nome da bateria precisa ter pelo menos 3 letras.' }),
@@ -73,15 +87,25 @@ const RegisterPage = () => {
   const { user } = useAuth();
   const router = useRouter();
 
+  const [banner, setBanner] = useState('');
+
   const registerForm = useForm<RegisterFormsData>({
     resolver: zodResolver(registerFormSchema)
   });
 
   const { handleSubmit, watch } = registerForm;
 
-  const banner = watch('bannerUrl');
+  const bannerInput = watch('bannerUrl');
 
-  const profileBanner = banner ? banner : defaultBanner;
+  useEffect(() => {
+    if (bannerInput?.length) {
+      const key: File = bannerInput;
+      console.log(Object.values(key)[0]);
+      const blob = new Blob([Object.values(key)[0]], { type: 'image/*' });
+      const url = URL.createObjectURL(blob);
+      setBanner(url);
+    }
+  }, [bannerInput]);
 
   async function handleCompleteRegistration(data: RegisterFormsData) {
     try {
@@ -107,10 +131,15 @@ const RegisterPage = () => {
       console.log(err);
     }
   }
+
+  function onDeleteBannerImage() {
+    setBanner('');
+  }
+
   return (
     <DefaultLayout title="Register">
       <Container>
-        <Banner url={profileBanner} />
+        <Banner url={banner ? banner : defaultBanner} />
 
         <Divider />
 
@@ -136,6 +165,8 @@ const RegisterPage = () => {
               <ImageInput
                 label={'Uma imagem de capa para seu perfil'}
                 name={'bannerUrl'}
+                url={banner}
+                onDeleteImage={onDeleteBannerImage}
               />
 
               <TextInput

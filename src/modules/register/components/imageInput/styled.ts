@@ -78,3 +78,17 @@ export const ErrorMessage = styled('p', {
   color: '$danger-light',
   fontSize: '$sm'
 });
+
+export const DeleteImageButton = styled('span', {
+  zIndex: 9999,
+  position: 'absolute',
+  top: '5px',
+  right: '5px',
+  color: 'white',
+  backgroundColor: 'rgba(0, 0, 0, 0.2)',
+  padding: '8px',
+  fontSize: '24px',
+  fontFamily: '$default',
+  cursor: 'pointer',
+  borderRadius: '4px'
+});
